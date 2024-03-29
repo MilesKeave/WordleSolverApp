@@ -1,12 +1,15 @@
 import logo from './logo.svg';
+import "bootswatch/dist/slate/bootstrap.min.css";
 import './App.css';
 import React, {useState, useEffect} from 'react';
+import Guess from "./guess.js";
 
 function App() {
 
   const [possibleWords, setPossibleWords] = useState([])
   const[guess, setGuess] = useState(" ")
   const [feedback, setFeedback] = useState(" ")
+  const [guessSoFar, setGuessSoFar] = useState("")
 
  
 
@@ -57,6 +60,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
 
         <form onSubmit={handleSubmit}>
+          <Guess guess = {guessSoFar}/>
           <label>
             Guess:
             <input

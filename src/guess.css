@@ -1,0 +1,42 @@
+.guess-row{
+
+    width: 65%;
+    height: 100px;
+    margin: 10px auto;
+    display: grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    display: -ms-grid; 
+    -ms-grid-row-gap:1.5rem;
+    -ms-grid-column-gap:1.5rem;
+
+
+}
+.box-item{
+
+    width: 100px;
+    height: auto;
+    position: relative;
+    background-color: black;
+    border-width: 5px;
+    border-style: solid;
+    border-color: grey;
+    justify-content: center;
+    align-items: center;
+    z-index:2;
+
+}
+.letter-box{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100%;
+    width: 100%;
+    z-index:1;
+    padding:0;
+    margin:0;
+}
