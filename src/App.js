@@ -3,14 +3,46 @@ import "bootswatch/dist/slate/bootstrap.min.css";
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import Guess from "./guess.js";
+import {LETTERS} from "./data/letters.js"
 
 function App() {
 
   const [possibleWords, setPossibleWords] = useState([])
-  const[guess, setGuess] = useState(" ")
-  const [feedback, setFeedback] = useState(" ")
+  const[guess, setGuess] = useState("")
+  const [feedback, setFeedback] = useState("")
   const [guessSoFar, setGuessSoFar] = useState("")
 
+  const typeLetter = (letter) =>{
+
+    //Todo
+    console.log(letter)
+  }
+
+
+  const handleKeyDown = (event) =>{
+    //console.log("ketodwn")
+
+    /* if (solutionFound) {
+      return console.log("done");
+    } */
+    if (LETTERS.includes(event.key)){
+      if (guess.length <5){
+        setGuess(guess + event.key)
+        console.log("set")
+        console.log(guess + event.key)
+        console.log("guess:" + guess)
+      }
+
+      //typeLetter(event.key)
+    }
+    if (event.keyCode === 8) {
+      let length = guess.length - 1
+      setGuess(guess.slice(0,length))
+      console.log("delete")
+      console.log(guess)
+    }
+    
+  }
  
 
   const handleSubmit  = async(e) =>{
@@ -56,20 +88,12 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header" tabIndex="0" onKeyDown={handleKeyDown}>
         <img src={logo} className="App-logo" alt="logo" />
 
         <form onSubmit={handleSubmit}>
-          <Guess guess = {guessSoFar}/>
-          <label>
-            Guess:
-            <input
-            type="text"
-            name = "guess"
-            value={guess}
-            onChange={(e) => setGuess(e.target.value)}
-          />
-          </label>
+          <Guess guess = {guess}/>
+      
           <label>
             Feedback
             <input

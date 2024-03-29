@@ -5,16 +5,13 @@ import './guess.css';
 export default function Guess(guess){
     console.log(guess.guess);
 
-    const handleTextInput = () => {
-
-        console.log("clicked")
-    }
+    
 
 
 
     return(
         
-    <div className = "guess-row" onClick={handleTextInput}>
+    <div className = "guess-row">
         
             <div className = "box-item">
                 <h1 className= "letter-box">
