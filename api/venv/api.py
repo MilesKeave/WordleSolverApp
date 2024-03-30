@@ -45,9 +45,13 @@ def predict():
 
 
 
+
     for guesses in range(1):
         guess = remainingWords["guess"].lower()
         feedback = remainingWords["feedback"].lower()
+
+        print(guess)
+        print(feedback)
 
         if feedback == "ggggg":
             return {jsonify("completed")}

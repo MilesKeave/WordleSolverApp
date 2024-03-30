@@ -8,15 +8,35 @@ import {LETTERS} from "./data/letters.js"
 function App() {
 
   const [possibleWords, setPossibleWords] = useState([])
-  const[guess, setGuess] = useState("")
-  const [feedback, setFeedback] = useState("")
+  const [guess, setGuess] = useState("")
+  const [feedback, setFeedback] = useState(["w","w","w","w","w"])
   const [guessSoFar, setGuessSoFar] = useState("")
+  const [colors, setColors] = useState(["black", "black", "black", "black", "black"])
 
-  const typeLetter = (letter) =>{
 
-    //Todo
-    console.log(letter)
+  const getColors = (feed) => {
+    var dict = {
+      "w": "#000000",
+      "y": "#c8b653",
+      "g":"#6ca965"
+      
+    };
+
+    var i = 0
+    var colorFeedback = []
+
+    while (i<5){
+      colorFeedback.push(dict[feed[i]])
+      i+=1
+    }
+    console.log(colorFeedback)
+    setColors(colorFeedback)
+
+
+
   }
+
+  
 
 
   const handleKeyDown = (event) =>{
@@ -47,6 +67,10 @@ function App() {
 
   const handleSubmit  = async(e) =>{
     e.preventDefault()
+    console.log("here")
+    console.log(feedback)
+    console.log(guess)
+    
     
     
     try{
@@ -63,7 +87,7 @@ function App() {
         },
         body: JSON.stringify({
           returnWords: possibleWords,
-          feedback: feedback,
+          feedback: feedback.join(""),
           guess: guess
         }),
         
@@ -84,26 +108,78 @@ function App() {
   }
 }
 
-  
+useEffect(() => {
+  getColors(feedback);
+
+
+}, [feedback]);
+
+const setIthFeedback = (i, letter) =>{
+  var temp = feedback
+  temp[i] = letter
+  console.log(temp)
+  console.log(feedback)
+  setFeedback(temp)
+  getColors(feedback)
+
+
+}
+
+
+
+
+
 
   return (
     <div className="App">
       <header className="App-header" tabIndex="0" onKeyDown={handleKeyDown}>
         <img src={logo} className="App-logo" alt="logo" />
 
-        <form onSubmit={handleSubmit}>
-          <Guess guess = {guess}/>
+        <form>
+          <Guess guess = {guess} feedback2={colors} />
+
+          <div className = "guess-row2">
+            <div className = "colorSelector"> 
+              <button className = "colorSelector" style={{backgroundColor : "black"}} type = "button" onClick={()=>{setIthFeedback(0, "w")}}> </button>
+              <button className = "colorSelector" style={{backgroundColor : "#c8b653"}} type = "button" onClick={()=>{setIthFeedback(0, "y")}} > </button>
+              <button className = "colorSelector" style={{backgroundColor : "#6ca965"}} type = "button" onClick={()=>{setIthFeedback(0, "g")}}> </button>
+            </div>
+            <div className = "colorSelector"> 
+              <button className = "colorSelector" style={{backgroundColor : "black"}} type = "button" onClick={()=>{setIthFeedback(1, "w")}}> </button>
+              <button className = "colorSelector" style={{backgroundColor : "#c8b653"}} type = "button" onClick={()=>{setIthFeedback(1, "y")}}> </button>
+              <button className = "colorSelector" style={{backgroundColor : "#6ca965"}} type = "button" onClick={()=>{setIthFeedback(1, "g")}} > </button>
+            </div>
+            <div className = "colorSelector">
+              <button className = "colorSelector" style={{backgroundColor : "black"}} type = "button" onClick={()=>{setIthFeedback(2, "w")}}> </button>
+              <button className = "colorSelector" style={{backgroundColor : "#c8b653"}} type = "button" onClick={()=>{setIthFeedback(2, "y")}}> </button>
+              <button className = "colorSelector" style={{backgroundColor : "#6ca965"}} type = "button" onClick={()=>{setIthFeedback(2, "g")}}> </button>
+            </div>
+            <div className = "colorSelector">
+              <button className = "colorSelector" style={{backgroundColor : "black"}} type = "button" onClick={()=>{setIthFeedback(3, "w")}}> </button>
+              <button className = "colorSelector" style={{backgroundColor : "#c8b653"}} type = "button" onClick={()=>{setIthFeedback(3, "y")}}> </button>
+              <button className = "colorSelector" style={{backgroundColor : "#6ca965"}} type = "button" onClick={()=>{setIthFeedback(3, "g")}}> </button>
+            </div>
+            <div className = "colorSelector">
+              <button className = "colorSelector" style={{backgroundColor : "black"}} type = "button" onClick={()=>{setIthFeedback(4, "w")}}> </button>
+              <button className = "colorSelector" style={{backgroundColor : "#c8b653"}} type = "button" onClick={()=>{setIthFeedback(4, "y")}}> </button>
+              <button className = "colorSelector" style={{backgroundColor : "#6ca965"}} type = "button" onClick={()=>{setIthFeedback(4, "g")}}> </button>
+            </div>
+          </div>
+
+          
       
-          <label>
+         {/*  <label>
             Feedback
             <input
             type="text"
             name = "feedback"
             value={feedback}
-            onChange={(e) => setFeedback(e.target.value)}
+            onChange={(e) => {
+              setFeedback(e.target.value)
+              }}
           />
-          </label>
-          <button type="submit">Submit</button>
+          </label> */}
+          <button type="submit" onClick={handleSubmit}>Submit</button>
           
         </form>
         <div>
