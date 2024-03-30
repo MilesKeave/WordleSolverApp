@@ -9,7 +9,7 @@ import React, {useState, useEffect} from 'react';
 import Guess from "./guess.js";
 import {LETTERS} from "./data/letters.js"
 
-function App() {
+function App() { 
 
   const [possibleWords, setPossibleWords] = useState([])
   const [guess, setGuess] = useState("")
