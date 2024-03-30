@@ -1,4 +1,6 @@
-import "bootswatch/dist/slate/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootswatch/dist/slate/bootstrap.min.css';
+import './bootstrap.min.css';
 import React, {useState, useEffect} from 'react';
 import './guess.css';
 

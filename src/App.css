@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: bisque;
 }
 
 .App-logo {
@@ -36,12 +37,32 @@
   display: -ms-grid; 
   -ms-grid-row-gap:0rem;
   -ms-grid-column-gap:0rem;
+  background-image: none !important;
+}
+
+.wordList{
+  font-size: 30px;
+  color: black;
+  font-family: Karnak Condensed Bold;
+  font-weight: bold;
+
+
+
+}
+.wordTitle{
+  font-size: 40px;
+  color: black;
+  font-family: Karnak Condensed Bold;
+  font-weight: bold;
+
+
+
 }
 
 
 
 .App-header {
-  background-color: #282c34;
+  background-color: #e3e3e1;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
