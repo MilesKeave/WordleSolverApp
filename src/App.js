@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootswatch/dist/slate/bootstrap.min.css'; 
 import logoImage from './wordle-logo-BFA5E0DEB0-seeklogo.com.png';
+import { IconButton } from "rsuite";
+import {Reload} from '@rsuite/icons';
+import "rsuite/dist/rsuite.min.css";
 
 import { Button} from 'react-bootstrap';
 import './App.css';
@@ -133,6 +136,15 @@ const setIthFeedback = (i, letter) =>{
 
 }
 
+const handleRefresh = ()=>{
+
+  setGuess("");
+  setPossibleWords([]);
+  setFeedback(["w","w","w","w","w"]);
+  setGuessSoFar(0);
+  setColors(["black", "black", "black", "black", "black"]);
+}
+
 
 
 
@@ -141,8 +153,17 @@ const setIthFeedback = (i, letter) =>{
   return (
     <div className="App">
       <header className="App-header" tabIndex="0" onKeyDown={handleKeyDown}>
-       
-        <img src={logoImage} />
+        <div className= "top-box">
+          <div className= "buttonBox">
+          <IconButton className = "refreshButton" title= "refresh" type = "button" onClick = {()=>{handleRefresh()}}> 
+          <span className="refreshIcon">
+          <Reload style={{alignSelf: 'center'}} />
+        </span>
+          </IconButton>
+          </div>
+          <img src={logoImage} />
+          <div></div>
+        </div>
 
         <form>
           <Guess guess = {guess.toUpperCase()} feedback2={colors} />
